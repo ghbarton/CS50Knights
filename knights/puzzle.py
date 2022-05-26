@@ -10,25 +10,58 @@ CKnight = Symbol("C is a Knight")
 CKnave = Symbol("C is a Knave")
 
 # Puzzle 0
-# A says "I am both a knight and a knave."
-knowledge0 = And(
-    # TODO
+# A says "I am both a knight and a knave."]
+print("C----------------------------------------------------------------\n\n\n\n\n\n")
+sentance0 = And(AKnight, AKnave)
+knowledge0 = And(    
+    # TODO     
+    Or(AKnight, AKnave),
+    Or(BKnight, BKnave),
+    Or(CKnight, CKnave),
+    Not(And(AKnight, AKnave)),
+    Not(And(BKnight, BKnave)),
+    Not(And(CKnight, CKnave)),    
+    Biconditional(AKnight, sentance0)
 )
 
+sentance1 = And(AKnave, BKnave)
 # Puzzle 1
 # A says "We are both knaves."
 # B says nothing.
 knowledge1 = And(
     # TODO
-)
+    Or(AKnight, AKnave),
+    Or(BKnight, BKnave),
+    Or(CKnight, CKnave),
+    Not(And(AKnight, AKnave)),
+    Not(And(BKnight, BKnave)),
+    Not(And(CKnight, CKnave)),   
 
+    Biconditional(AKnight, sentance1)
+
+)
+sentance2 = Or(And(AKnave, BKnave), And(AKnight, BKnight))      
+
+sentance2A = Or(And(AKnave, BKnight), And(AKnight, BKnave))  
 # Puzzle 2
 # A says "We are the same kind."
 # B says "We are of different kinds."
 knowledge2 = And(
     # TODO
+    Or(AKnight, AKnave),
+    Or(BKnight, BKnave),
+    Or(CKnight, CKnave),
+    Not(And(AKnight, AKnave)),
+    Not(And(BKnight, BKnave)),
+    Not(And(CKnight, CKnave)),    
+    Biconditional(AKnight, sentance2),
+    Biconditional(BKnight, sentance2A)
 )
 
+sentance3A = Or(AKnight, AKnave)
+sentance3B = And(Biconditional(AKnave, BKnight), CKnave)
+#sentance3B2 = CKnave
+sentance3C = Implication(CKnight, AKnight)
 # Puzzle 3
 # A says either "I am a knight." or "I am a knave.", but you don't know which.
 # B says "A said 'I am a knave'."
@@ -36,6 +69,16 @@ knowledge2 = And(
 # C says "A is a knight."
 knowledge3 = And(
     # TODO
+    Or(AKnight, AKnave),
+    Or(BKnight, BKnave),
+    Or(CKnight, CKnave),
+    Not(And(AKnight, AKnave)),
+    Not(And(BKnight, BKnave)),
+    Not(And(CKnight, CKnave)),    
+    Biconditional(AKnight, sentance3A),
+    Biconditional(BKnight, sentance3B),
+    #Biconditional(BKnight, sentance3B2),
+    Biconditional(CKnight, sentance3C)
 )
 
 
